@@ -2165,7 +2165,7 @@ GameObject:
   - component: {fileID: 1230595064}
   - component: {fileID: 1230595066}
   - component: {fileID: 1230595065}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19517,6 +19517,12 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1991391889932503857, guid: eeb8402c833b179beb977adf93e151bf,
+        type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 8276531921936690678, guid: 27225cca0a4d4e1aaafda63074904888,
+        type: 3}
     - target: {fileID: 1991391889932503884, guid: eeb8402c833b179beb977adf93e151bf,
         type: 3}
       propertyPath: m_Name

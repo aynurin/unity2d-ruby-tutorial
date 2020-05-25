@@ -18,6 +18,7 @@ public class RubyController : DamageableController
     Vector2 move;
 
     public float moveSpeed = 3f;
+    public GameObject projectilePrefab;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -44,6 +45,24 @@ public class RubyController : DamageableController
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            LaunchProjectile();
+        }
+    }
+
+    void LaunchProjectile()
+    {
+        GameObject projectileObject = Instantiate(
+            projectilePrefab,
+            rigidbody2d.position + Vector2.up * 0.5f,
+            Quaternion.identity);
+
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        projectile.Launch(rigidbody2d.position, lookDirection, 300);
+
+        animator.SetTrigger("Launch");
     }
 
     void FixedUpdate()
@@ -55,11 +74,13 @@ public class RubyController : DamageableController
         rigidbody2d.MovePosition(position);
     }
 
-    protected override void OnTakeHit(float newHealth) {
+    protected override void OnTakeHit(float newHealth)
+    {
         animator.SetTrigger("Hit");
     }
 
-    protected virtual void OnDead() {
+    protected override void OnDead()
+    {
         animator.SetTrigger("Hit");
     }
 }

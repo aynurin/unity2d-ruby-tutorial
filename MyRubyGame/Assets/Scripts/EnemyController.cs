@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyController : DamageableController
 {
+    public bool broken = true;
     public int maxHealth = 10;
     protected override int MaxHealth { get => maxHealth; }
 
@@ -35,19 +36,30 @@ public class EnemyController : DamageableController
 
     void FixedUpdate()
     {
-        if (moveVertical) {
+        if (!broken)
+        {
+            return;
+        }
+        if (moveVertical)
+        {
             MoveVertical();
-        } else {
+        }
+        else
+        {
             MoveHorizontal();
         }
     }
 
-    void MoveVertical() {
+    void MoveVertical()
+    {
         Vector2 position = rigidbody2d.position;
         var range = moveRange / 2;
-        if (position.y >= startPosition.y + range) {
+        if (position.y >= startPosition.y + range)
+        {
             currentDirection = -moveSpeed / Math.Abs(moveSpeed);
-        } else if (position.y <= startPosition.y - range) {
+        }
+        else if (position.y <= startPosition.y - range)
+        {
             currentDirection = moveSpeed / Math.Abs(moveSpeed);
         }
         animator.SetFloat("Move X", 0);
@@ -56,12 +68,16 @@ public class EnemyController : DamageableController
         rigidbody2d.MovePosition(position);
     }
 
-    void MoveHorizontal() {
+    void MoveHorizontal()
+    {
         Vector2 position = rigidbody2d.position;
         var range = moveRange / 2;
-        if (position.x >= startPosition.x + range) {
+        if (position.x >= startPosition.x + range)
+        {
             currentDirection = -moveSpeed / Math.Abs(moveSpeed);
-        } else if (position.x <= startPosition.x - range) {
+        }
+        else if (position.x <= startPosition.x - range)
+        {
             currentDirection = moveSpeed / Math.Abs(moveSpeed);
         }
         animator.SetFloat("Move Y", 0);
@@ -78,5 +94,12 @@ public class EnemyController : DamageableController
         {
             player.ChangeHealth(-damageValue, false);
         }
+    }
+
+    public void Fix()
+    {
+        broken = false;
+        rigidbody2d.simulated = false;
+        animator.SetTrigger("Fixed");
     }
 }
