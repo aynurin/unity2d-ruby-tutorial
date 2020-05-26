@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5914874376606463612}
   - component: {fileID: 6636654559234565972}
   - component: {fileID: 802741251702890261}
+  - component: {fileID: 8181230248441511243}
   m_Layer: 0
   m_Name: CollectibleHealth
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b438354a431efbdf3a09d4b5f92e9519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthEffect: {fileID: 0}
 --- !u!212 &6636654559234565972
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -121,3 +123,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8731638, y: 0.44026673}
   m_EdgeRadius: 0
+--- !u!95 &8181230248441511243
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971260736949236524}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9cdf1b52931b7096dbb8753e61ae8199, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

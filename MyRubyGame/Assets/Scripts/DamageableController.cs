@@ -13,6 +13,9 @@ public abstract class DamageableController : MonoBehaviour
         get { return currentHealth; }
     }
 
+    public ParticleSystem hitEffect;
+    public ParticleSystem healthEffect;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -27,12 +30,18 @@ public abstract class DamageableController : MonoBehaviour
         }
         var newHealth = Mathf.Clamp(currentHealth + actualDamage, 0, MaxHealth);
         if (newHealth == 0) {
+            hitEffect?.Play();
             OnDead();
         } else if (actualDamage < 0) {
+            hitEffect?.Play();
             OnTakeHit(newHealth);
         } else if (newHealth == MaxHealth) {
+            if (newHealth > currentHealth) {
+                GainHealthAnimation();
+            }
             OnFullHealth();
         } else if (actualDamage > 0) {
+            GainHealthAnimation();
             OnGainHealth(newHealth);
         }
         Debug.Log(String.Format("{4}: {3}, {2} - {0}/{1}", newHealth, MaxHealth, 
@@ -43,6 +52,15 @@ public abstract class DamageableController : MonoBehaviour
         } else {
             return false;
         }
+    }
+
+    private void GainHealthAnimation() {
+        // healthEffect?.Play();
+        var particles = Instantiate(
+            healthEffect,
+            transform.position,
+            Quaternion.identity);
+        particles?.Play();
     }
 
     protected virtual void OnTakeHit(float newHealth) {}

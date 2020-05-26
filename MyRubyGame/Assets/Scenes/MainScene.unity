@@ -29155,6 +29155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1343929912}
   - component: {fileID: 1343929911}
+  - component: {fileID: 1343929913}
   m_Layer: 0
   m_Name: TelegraphPost
   m_TagString: Untagged
@@ -29220,12 +29221,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343929910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.76, y: 1.37, z: 0}
+  m_LocalPosition: {x: 5.76, y: 1.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1343929913
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343929910}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0009357929, y: -0.047436714}
+  serializedVersion: 2
+  m_Radius: 0.10615301
 --- !u!1001 &1349874313
 PrefabInstance:
   m_ObjectHideFlags: 0

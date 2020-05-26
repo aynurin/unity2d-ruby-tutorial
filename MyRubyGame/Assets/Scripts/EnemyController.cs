@@ -10,6 +10,7 @@ public class EnemyController : DamageableController
     protected override int MaxHealth { get => maxHealth; }
 
     Rigidbody2D rigidbody2d;
+    public ParticleSystem smokeEffect;
 
     public bool moveVertical = true;
 
@@ -101,5 +102,6 @@ public class EnemyController : DamageableController
         broken = false;
         rigidbody2d.simulated = false;
         animator.SetTrigger("Fixed");
+        smokeEffect?.Stop();
     }
 }
