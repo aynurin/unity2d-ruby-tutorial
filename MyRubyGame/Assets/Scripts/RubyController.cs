@@ -77,10 +77,20 @@ public class RubyController : DamageableController
     protected override void OnTakeHit(float newHealth)
     {
         animator.SetTrigger("Hit");
+        UIHealthBar.instance.SetValue(newHealth / maxHealth);
     }
 
     protected override void OnDead()
     {
         animator.SetTrigger("Hit");
+        UIHealthBar.instance.SetValue(0);
+    }
+
+    protected override void OnGainHealth(float newHealth) {
+        UIHealthBar.instance.SetValue(newHealth / maxHealth);
+    }
+
+    protected override void OnFullHealth() {
+        UIHealthBar.instance.SetValue(1);
     }
 }
