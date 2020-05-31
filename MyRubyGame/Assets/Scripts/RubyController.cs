@@ -20,12 +20,22 @@ public class RubyController : DamageableController
     public float moveSpeed = 3f;
     public GameObject projectilePrefab;
 
+    AudioSource audioSource;
+    public AudioClip projectileThrownClip;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        Debug.Log(String.Format("Now Ruby will play {0} by {1}", clip, audioSource));
+        audioSource.PlayOneShot(clip);
     }
 
     // Update is called once per frame
@@ -49,6 +59,7 @@ public class RubyController : DamageableController
         if (Input.GetButtonDown("Fire1"))
         {
             LaunchProjectile();
+            PlaySound(projectileThrownClip);
         }
 
         // if (Input.GetKeyDown(KeyCode.X))

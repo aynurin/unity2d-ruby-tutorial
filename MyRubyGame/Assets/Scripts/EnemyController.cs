@@ -25,6 +25,9 @@ public class EnemyController : DamageableController
     Vector2 startPosition;
 
     Animator animator;
+    AudioSource audioSource;
+    public AudioClip botFixed;
+    public AudioClip damageClip;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -33,6 +36,13 @@ public class EnemyController : DamageableController
         rigidbody2d = GetComponent<Rigidbody2D>();
         startPosition = rigidbody2d.position;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        Debug.Log(String.Format("Now Ruby will play {0}", clip));
+        audioSource.PlayOneShot(clip);
     }
 
     void FixedUpdate()
@@ -94,6 +104,7 @@ public class EnemyController : DamageableController
         if (player != null)
         {
             player.ChangeHealth(-damageValue, false);
+            player.PlaySound(damageClip);
         }
     }
 
@@ -103,5 +114,7 @@ public class EnemyController : DamageableController
         rigidbody2d.simulated = false;
         animator.SetTrigger("Fixed");
         smokeEffect?.Stop();
+        PlaySound(botFixed);
+        audioSource.loop = false;
     }
 }
